@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css
+        ">
+        
+        <title>Document</title>
+        <style>
+            *{
+                margin:.5%;
+                background-color: ghostwhite;
+                color: #495867;
+            }
+            li{
+                width: 40rem;
+            }
+            a{
+                color: #495867;
+                text-decoration: none;
+            }
+            a:hover{
+                color: #495867;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="d-flex justify-content-end gap-2">
+            <!-- the href below will redirect you to a create a post -->
+            <a href="/post/new" class="btn btn-secondary">Create a Post</a>
+            <p>|</p>
+            <a href="/users/logout" class="btn btn-warning">Logout</a>
+
+        </div>  
+        <div class="d-flex justify-content-center">
+            <!-- Here Will be the Post -->
+            <ul class="list-unstyled text-center">
+                
+                {% for post in all_posts %}
+                <li class="border-bottom">
+                    <a  href="/posts/{{post.id}}">
+                        <p>{{post.title}} | Posted by: {{post.monkey.username}}</p>
+                    </a>
+                    
+                    {% if session['user_id'] == post.user_id %}
+                    
+                    <a href="/posts/{{post.id}}/edit">Edit</a> 
+                    <a href="/posts/{{post.id}}/delete">Delete</a>
+                    <br>
+                    {% endif %}
+                </li>
+                    {% endfor %}
+            </ul>
+        </div>
+        
+
+    </body>
+</html>

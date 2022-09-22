@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <title>Recipe Post</title>
+        <style>
+            body{
+                margin: 2%;
+            }
+            #container{
+                padding: 1%;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="d-flex justify-content-between">
+            <div>
+                <h1>Welcome {{logged_user.first_name}} {{logged_user.last_name}}</h1>
+            </div>
+            <div class=" d-flex gap-5">
+                <a href="/welcome">back to recipes</a>
+                <a href='/users/logout'>logout</a>
+            </div>
+        </div>
+        <div class="d-flex justify-content-between">
+            <div>
+                <h2>{{recipe.name}}</h2>
+            </div>
+            <div>
+                <h2>Posted By: {{recipe.monkey.first_name}} {{recipe.monkey.last_name}}</h2>
+            </div>
+        </div>
+        <div id="container" class="border border-dark">
+            <p>Description: {{recipe.description}}</p>
+            <p>Under 30 Minutes? {% if recipe.thirty_minutes == 1 %}Yes{% else %}No{% endif %}</p>
+            <p>Instructions: {{recipe.instructions}}</p>
+            <p>Date Made: {{recipe.date.strftime('%Y-%m-%d')}}</p>
+
+        </div>
+            
+    </body>
+</html>

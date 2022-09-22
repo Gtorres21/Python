@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css ">
+        <title>Document</title>
+        <style>
+            *{
+                margin:.5%;
+                background-color: ghostwhite;
+                color: #495867;
+            }
+            li{
+                width: 40rem;
+            }
+            a{
+                color: #495867;
+                text-decoration: none;
+            }
+            a:hover{
+                color: #495867;
+            }
+            img {
+                float: left;
+                width:  42rem;
+                height: 42rem;
+                object-fit: cover;
+            }
+        </style>
+
+    </head>
+    <body>
+        <div id="container" class="d-flex flex-row justify-content-around">
+            
+            <div id="col-one">
+                <img src="{{post.img}}">
+                <h2>{{post.title}} | {{post.monkey.username}} </h2>
+                <p>{{post.body}}</p>
+            </div>
+            
+            <div id="col-two">
+                <div class="d-flex justify-content-end">
+                    <a href="/welcome" class="btn btn-secondary">Dashboard</a> <a href="/users/logout" class="btn btn-warning">Logout</a>
+                </div>
+                <form action="/comment/create/{{post.id}}" method="post">
+                    <textarea name="comment" id="" cols="50" rows="5" placeholder="Write a comment ..."></textarea>
+
+                    <button class="btn btn-dark">Post a Comment</button>
+                    
+                </form>
+
+                    
+                    {% for comment in post_comment %}
+                    <p class="list-unstyled">{{comment.user.username}}: {{comment.comment}}</p>
+                    {% endfor %}
+
+            </div>
+        
+            
+        </div>
+        
+    </body>
+</html>

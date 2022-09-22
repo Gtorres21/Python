@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css
+        ">
+        <title>Document</title>
+        <style>
+            *{
+                margin:.5%;
+                background-color: ghostwhite;
+                color: #495867;
+            }
+            form{
+                padding: 2% 5%;
+            }
+            li{
+                width: 40rem;
+            }
+            a{
+                color: #495867;
+                text-decoration: none;
+            }
+            a:hover{
+                color: #495867;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="d-flex justify-content-end">
+            <a href="/welcome" class="btn btn-secondary">Dashboard</a> <a href="/users/logout" class="btn  btn-warning">Logout</a>
+        </div>
+        <form action="/post/{{post.id}}/update" method="post" enctype="multipart/form-data">
+
+            <div id="container" class="d-flex flex-column gap-2">
+                <textarea name="title" id="title" cols="30" rows="2" placeholder="Title"></textarea>
+                <br>
+                <textarea name="body" id="body" cols="30" rows="10" placeholder="Write what your post is about"></textarea>
+                <br>
+                <input type="text" name="img" placeholder="Paste Image URL Address">
+
+
+                <br>
+                <button class="btn btn-dark">Post</button>
+                
+            </div>
+            
+        </form>
+    </body>
+</html>
