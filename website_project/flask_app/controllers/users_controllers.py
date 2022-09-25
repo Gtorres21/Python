@@ -49,6 +49,26 @@ def logout():
     return redirect('/')
 
 
+@app.route('/users/<int:id>/edit')
+def edit_user(id):
+    if 'user_id' not in session:
+        return redirect('/')
+    user = User.get_by_id({'id' : id})
+    return render_template('edit_profile.html', user = user)
+
+@app.route('/users/<int:id>/update', methods=['POST'])
+def update_user(id):
+    if 'user_id' not in session:
+        return redirect('/')
+    data = {
+        **request.form,
+        'id' : id
+    }
+    User.update(data)
+    return redirect('/welcome')
+
+
+
 @app.route('/welcome')
 def welcome():
     if 'user_id' not in session:

@@ -15,6 +15,12 @@
             li{
                 width: 40rem;
             }
+            #col-one{
+                padding-right: 10%;
+            }
+            #col-two{
+                margin-right: 5%;
+            }
             a{
                 color: #495867;
                 text-decoration: none;
@@ -23,25 +29,35 @@
                 color: #495867;
             }
             img {
-                float: left;
-                width:  42rem;
-                height: 42rem;
+                float: initial;
+                width:  35rem;
+                height: 35rem;
                 object-fit: cover;
             }
+            #picture{
+                float: left;
+                width:  7rem;
+                height: 7rem;
+                object-fit: cover;
+                border-radius: 50%;
+            }
+            #comment_section{
+                gap: 20px;
+            }
+    
         </style>
-
     </head>
     <body>
         <div id="container" class="d-flex flex-row justify-content-around">
             
-            <div id="col-one">
+            <div id="col-one" class="d-flex flex-column">
                 <img src="{{post.img}}">
                 <h2>{{post.title}} | {{post.monkey.username}} </h2>
                 <p>{{post.body}}</p>
             </div>
-            
             <div id="col-two">
                 <div class="d-flex justify-content-end">
+                    <a href="/users/{{logged_user.id}}/edit" class="btn btn-primary">{{logged_user.username}}</a>
                     <a href="/welcome" class="btn btn-secondary">Dashboard</a> <a href="/users/logout" class="btn btn-warning">Logout</a>
                 </div>
                 <form action="/comment/create/{{post.id}}" method="post">
@@ -50,11 +66,16 @@
                     <button class="btn btn-dark">Post a Comment</button>
                     
                 </form>
-
-                    
-                    {% for comment in post_comment %}
-                    <p class="list-unstyled">{{comment.user.username}}: {{comment.comment}}</p>
-                    {% endfor %}
+                
+                {% for comment in post_comment %}
+                <div id="comment_section" class="d-flex align-items-center">
+                    <p >
+                        <h4 class="d-flex flex-column align-items-center"><img id="picture" src="{{comment.user.image}}" alt="">{{comment.user.username}}</h4>
+                        
+                    {{comment.comment}} 
+                </p>
+                </div>
+                        {% endfor %}
 
             </div>
         

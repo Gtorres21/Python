@@ -1,3 +1,4 @@
+from msilib.schema import LockPermissions
 from flask_app.config.mysqlconnection import connectToMySQL
 from flask_app import DATABASE
 from flask import flash
@@ -10,6 +11,7 @@ class User:
         self.username = data['username']
         self.password = data['password']
         self.email = data['email']
+        self.image = data['image']
         self.created_at = data['created_at']
         self.updated_at = data['updated_at']
 
@@ -34,6 +36,11 @@ class User:
         if len(results) <1:
             return False
         return cls(results[0])
+
+    @classmethod
+    def update(cls, data):
+        query = 'UPDATE users SET username = %(username)s, image = %(image)s WHERE id = %(id)s'
+        return connectToMySQL(DATABASE).query_db(query, data)
 
 
 
@@ -64,4 +71,6 @@ class User:
             flash("Passes don't match","reg")
             is_valid = False
         return is_valid
+        
+
         

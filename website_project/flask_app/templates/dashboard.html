@@ -30,8 +30,9 @@
     <body>
         <div class="d-flex justify-content-end gap-2">
             <!-- the href below will redirect you to a create a post -->
+            <a href="/users/{{logged_user.id}}/edit" class="btn btn-primary">{{logged_user.username}}</a>
             <a href="/post/new" class="btn btn-secondary">Create a Post</a>
-            <p>|</p>
+            
             <a href="/users/logout" class="btn btn-warning">Logout</a>
 
         </div>  
